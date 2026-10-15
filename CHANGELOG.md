@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-15 (GitHub Pages)
+- Add a GitHub Actions workflow that tests, builds and publishes the game to GitHub Pages on each push to `master` (`.github/workflows/pages.yml`). The user wants the game public on GitHub and linked from munda.si.
+
 ## 2026-10-15 (folder)
 - Rename the project folder from `~/git_projects/incremental_game` to `~/git_projects/underneath` to match the game name. No files in the repo changed.
 
