@@ -414,6 +414,25 @@ textarea:focus-visible {
   color: var(--accent);
 }
 
+.cycle {
+  margin-top: 12px;
+}
+
+.cycle-track {
+  height: 8px;
+}
+
+.cycle-now {
+  position: absolute;
+  top: -4px;
+  width: 3px;
+  height: 16px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+
 /* ---------- generators ---------- */
 
 .gens {

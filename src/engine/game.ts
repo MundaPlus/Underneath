@@ -4,6 +4,7 @@ import { randomSeed } from './rng';
 import type {
   Amounts,
   BalanceZone,
+  CyclePhase,
   Effect,
   GameState,
   GeneratorDef,
@@ -45,6 +46,8 @@ export interface Rates {
   /** Balance after stability, -1..1. */
   balance: number;
   zone: BalanceZone;
+  /** Current cycle phase, or null when the theme has no cycle. */
+  phase: CyclePhase | null;
   /** Per generator: production per unit per second of each resource. */
   perGen: Record<string, Amounts>;
   /** Per generator efficiency 0..1 (upkeep shortfall). */
@@ -56,7 +59,8 @@ export type GameEvent =
   | { type: 'claim'; tile: number }
   | { type: 'buy'; kind: 'gen' | 'upgrade' | 'prestigeUpgrade'; id: string }
   | { type: 'prestige'; gain: number }
-  | { type: 'zone'; zone: BalanceZone };
+  | { type: 'zone'; zone: BalanceZone }
+  | { type: 'phase'; phase: CyclePhase };
 
 export type BuyAmount = number | 'max';
 
@@ -262,10 +266,11 @@ export class Game {
     const balance = rawBalance * (1 - this.mods.stability);
     const zone = this.zoneFor(balance);
 
-    // Apply zone multipliers.
+    // Apply zone and cycle multipliers.
+    const phase = this.cycle()?.phase ?? null;
     for (const g of c.generators) {
       const per = perGen[g.id];
-      for (const r of Object.keys(per)) per[r] *= zone.mult[r] ?? 1;
+      for (const r of Object.keys(per)) per[r] *= (zone.mult[r] ?? 1) * (phase ? (phase.mult[r] ?? phase.mult['*'] ?? 1) : 1);
     }
 
     // Pass 2: upkeep. Efficiency per generator = worst ratio over its upkeep resources.
@@ -295,7 +300,7 @@ export class Game {
 
     const net: Amounts = {};
     for (const r of c.resources) net[r.id] = prod[r.id] - cons[r.id];
-    return { prod, cons, net, rawBalance, balance, zone, perGen, genEff };
+    return { prod, cons, net, rawBalance, balance, zone, phase, perGen, genEff };
   }
 
   private freeIncome(res: string, perGen: Record<string, Amounts>): number {
@@ -305,6 +310,15 @@ export class Game {
       sum += (perGen[g.id][res] ?? 0) * (this.state.gens[g.id] ?? 0);
     }
     return sum;
+  }
+
+  /** Where the game is in its time cycle, or null when the theme has none. */
+  cycle(): { phase: CyclePhase; progress: number; phaseLeft: number } | null {
+    const cy = this.content.cycle;
+    if (!cy) return null;
+    const progress = (this.state.time % cy.period) / cy.period;
+    const phase = cy.phases.find((p) => progress >= p.from && progress < p.to) ?? cy.phases[cy.phases.length - 1];
+    return { phase, progress, phaseLeft: (phase.to - progress) * cy.period };
   }
 
   zoneFor(balance: number): BalanceZone {
@@ -319,6 +333,7 @@ export class Game {
     if (dt <= 0) return;
     const s = this.state;
     const prevZone = this.rates.zone.id;
+    const prevPhase = this.rates.phase?.id;
     this.rates = this.computeRates(dt);
     for (const r of this.content.resources) {
       const gain = this.rates.prod[r.id] * dt;
@@ -328,6 +343,7 @@ export class Game {
     s.time += dt;
     s.runTime += dt;
     if (this.rates.zone.id !== prevZone) this.emit({ type: 'zone', zone: this.rates.zone });
+    if (this.rates.phase && this.rates.phase.id !== prevPhase) this.emit({ type: 'phase', phase: this.rates.phase });
 
     this.storyTimer += dt;
     if (this.storyTimer >= 1) {

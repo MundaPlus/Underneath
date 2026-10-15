@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { clockworkContent } from '../themes/clockwork/content';
+import { dreamContent } from '../themes/dream/content';
 import { fungalContent } from '../themes/fungal/content';
 import { claimedCount } from './conditions';
 import { fmt } from './format';
@@ -139,6 +140,38 @@ describe('balance', () => {
   });
 });
 
+describe('cycle', () => {
+  it('applies the phase multiplier from game time', () => {
+    const c = testContent();
+    c.cycle = {
+      title: 'Day',
+      period: 100,
+      phases: [
+        { id: 'night', name: 'Night', description: '', from: 0, to: 0.6, mult: { '*': 2 }, color: '' },
+        { id: 'day', name: 'Day', description: '', from: 0.6, to: 1, mult: { a: 0.5 }, color: '' },
+      ],
+    };
+    const g = new Game(c, 't');
+    g.buyGen('ga', 1);
+    expect(g.rates.phase?.id).toBe('night');
+    expect(g.rates.prod.a).toBeCloseTo(1 * 2 * 2); // zone 'left' x2, night x2
+    const events: string[] = [];
+    g.on((e) => e.type === 'phase' && events.push(e.phase.id));
+    g.tick(60);
+    g.tick(0.1);
+    expect(g.rates.phase?.id).toBe('day');
+    expect(events).toEqual(['day']);
+    expect(g.rates.prod.a).toBeCloseTo(1 * 2 * 0.5);
+    expect(g.cycle()!.phaseLeft).toBeCloseTo(39.9);
+  });
+
+  it('is absent when the theme has no cycle', () => {
+    const g = new Game(testContent(), 't');
+    expect(g.cycle()).toBeNull();
+    expect(g.rates.phase).toBeNull();
+  });
+});
+
 describe('map', () => {
   it('generates the same map for the same seed, with an open start', () => {
     const c = testContent();
@@ -207,6 +240,7 @@ describe('format', () => {
 const THEME_CONTENTS: [string, ThemeContent, string][] = [
   ['fungal', fungalContent, 'mother'],
   ['clockwork', clockworkContent, 'archive'],
+  ['dream', dreamContent, 'haunted'],
 ];
 
 describe.each(THEME_CONTENTS)('%s content', (id, c, fixedTerrain) => {

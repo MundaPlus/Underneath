@@ -1,4 +1,4 @@
-import { fmt, fmtPct } from '../../engine/format';
+import { fmt, fmtPct, fmtTime } from '../../engine/format';
 import { floatText, h, setText } from '../dom';
 import type { Panel, UiContext } from './context';
 
@@ -56,6 +56,33 @@ export function actionsPanel(ctx: UiContext): Panel {
   const zoneDesc = h('span', { class: 'zone-desc' });
   const stability = h('span', { class: 'stability' });
 
+  // Optional time cycle (e.g. night and day).
+  const cy = c.cycle;
+  const cycleFill = h('div', { class: 'cycle-now' });
+  const cycleName = h('strong', { class: 'zone-name' });
+  const cycleDesc = h('span', { class: 'zone-desc' });
+  const cycleLeft = h('span', { class: 'stability' });
+  const cycleEl = cy
+    ? h(
+        'div',
+        { class: 'cycle' },
+        h('div', { class: 'balance-head' }, h('span', { class: 'balance-title', text: cy.title })),
+        h(
+          'div',
+          { class: 'balance-track cycle-track' },
+          ...cy.phases.map((p) => {
+            const seg = h('div', { class: 'balance-seg', title: `${p.name}: ${p.description}` });
+            seg.style.left = `${p.from * 100}%`;
+            seg.style.width = `${(p.to - p.from) * 100}%`;
+            seg.style.background = p.color;
+            return seg;
+          }),
+          cycleFill,
+        ),
+        h('div', { class: 'balance-info' }, cycleName, cycleDesc, cycleLeft),
+      )
+    : null;
+
   const el = h(
     'section',
     { class: 'panel actions' },
@@ -73,6 +100,7 @@ export function actionsPanel(ctx: UiContext): Panel {
       track,
       h('div', { class: 'balance-info' }, zoneName, zoneDesc, stability),
     ),
+    cycleEl,
   );
 
   return {
@@ -87,6 +115,13 @@ export function actionsPanel(ctx: UiContext): Panel {
       setText(zoneName, r.zone.name);
       setText(zoneDesc, r.zone.description);
       setText(stability, game.mods.stability > 0 ? `Stability ${fmtPct(game.mods.stability)}` : '');
+      const now = game.cycle();
+      if (now) {
+        cycleFill.style.left = `${now.progress * 100}%`;
+        setText(cycleName, now.phase.name);
+        setText(cycleDesc, now.phase.description);
+        setText(cycleLeft, `${fmtTime(now.phaseLeft)} left`);
+      }
     },
   };
 }

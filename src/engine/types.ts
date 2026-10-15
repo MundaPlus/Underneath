@@ -163,6 +163,27 @@ export interface PrestigeDef {
   upgrades: (UpgradeDef & { maxLevel?: number; costGrowth?: number })[];
 }
 
+export interface CyclePhase {
+  id: string;
+  name: string;
+  description: string;
+  /** Phase covers this part of the cycle, as fractions in [from, to). */
+  from: number;
+  to: number;
+  /** Production multipliers. Key '*' applies to every resource without its own key. */
+  mult: Partial<Record<ResourceId | '*', number>>;
+  /** CSS color for the cycle meter. */
+  color: string;
+}
+
+/** Optional repeating time cycle (e.g. day and night). It runs on game time, so offline time counts too. */
+export interface CycleDef {
+  title: string;
+  /** Length of one full cycle in seconds. */
+  period: number;
+  phases: CyclePhase[];
+}
+
 export interface StoryEvent {
   id: string;
   when: Condition;
@@ -192,6 +213,7 @@ export interface ThemeContent {
   balance: BalanceDef;
   prestige: PrestigeDef;
   story: StoryEvent[];
+  cycle?: CycleDef;
   strings: ThemeStrings;
 }
 

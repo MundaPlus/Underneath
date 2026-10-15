@@ -232,8 +232,20 @@ export async function startApp(root: HTMLElement): Promise<void> {
     }, 6000);
   };
 
+  // Offline catch-up crosses many cycle phases. Do not toast each one.
+  let catchingUp = false;
+  const catchUp = (seconds: number): ReturnType<Game['simulateOffline']> => {
+    catchingUp = true;
+    try {
+      return game.simulateOffline(seconds);
+    } finally {
+      catchingUp = false;
+    }
+  };
+
   game.on((e) => {
     if (e.type === 'log') toast(e.text);
+    if (e.type === 'phase' && !catchingUp) toast(`${e.phase.name}. ${e.phase.description}`);
     if (e.type === 'prestige') {
       toast(`+${fmt(e.gain)} ${theme.content.resources.find((r) => r.id === theme.content.prestige.currency)!.name}`);
       setRightTab('upgrades');
@@ -245,7 +257,7 @@ export async function startApp(root: HTMLElement): Promise<void> {
   if (saved) {
     const away = (Date.now() - saved.lastSaved) / 1000;
     if (away > 30) {
-      const { gained, seconds } = game.simulateOffline(away);
+      const { gained, seconds } = catchUp(away);
       const items = theme.content.resources
         .filter((r) => (gained[r.id] ?? 0) > 0)
         .map((r) => h('li', { style: `--c:${r.color}`, text: `${r.icon} +${fmt(gained[r.id])} ${r.name}` }));
@@ -277,7 +289,7 @@ export async function startApp(root: HTMLElement): Promise<void> {
     const now = performance.now();
     const dt = (now - last) / 1000;
     last = now;
-    if (dt > CATCH_UP_SECONDS) game.simulateOffline(dt);
+    if (dt > CATCH_UP_SECONDS) catchUp(dt);
     else game.tick(dt);
     updateUi();
   }, TICK_MS);

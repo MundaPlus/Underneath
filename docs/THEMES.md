@@ -65,9 +65,12 @@ Resource colors and zone colors are free names. The content refers to them, for 
 
 Use `gridLayout()` and `viewOffset()` from `src/themes/shared/layout.ts`. They give a minimum cell size and drag-to-pan on small screens. Draw static parts (ground, network) to offscreen canvases and redraw them only when the map changes. The Fungal renderer shows this pattern.
 
-## Ideas for the planned themes
+## Optional time cycle
 
-Clockwork Afterlife Bureau is done. See `src/themes/clockwork/` for a second example renderer (blueprint floor plan, no jitter).
+Set `cycle` in the content to add a repeating cycle, such as night and day. Each phase covers a part of the cycle and has production multipliers (key `'*'` for all resources). The cycle runs on game time, so offline time counts too. The UI shows a cycle meter and a toast when the phase changes. A renderer can read `view.game.cycle()` to change its look. Dream Weaver uses this.
 
+## Examples
 
-- **Dream Weaver**: resources are Calm and Nightmare. The map is a city at night: each tile is a house with sleepers. Prestige is a Long Sleep that moves you to a bigger city.
+- `src/themes/fungal/`: organic network with jittered tile centers.
+- `src/themes/clockwork/`: blueprint floor plan, no jitter, walls between rooms.
+- `src/themes/dream/`: top-down city with a night-and-day cycle.

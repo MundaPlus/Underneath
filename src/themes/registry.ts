@@ -25,7 +25,8 @@ export const THEMES: ThemeEntry[] = [
     id: 'dream',
     name: 'Dream Weaver',
     tagline: 'Harvest the dreams of a sleeping city.',
-    status: 'planned',
+    status: 'ready',
+    load: () => import('./dream').then((m) => m.default),
   },
 ];
 

@@ -7,9 +7,10 @@ import { Game } from '../src/engine/game';
 import { fmt, fmtTime } from '../src/engine/format';
 import type { ThemeContent } from '../src/engine/types';
 import { clockworkContent } from '../src/themes/clockwork/content';
+import { dreamContent } from '../src/themes/dream/content';
 import { fungalContent } from '../src/themes/fungal/content';
 
-const CONTENTS: Record<string, ThemeContent> = { fungal: fungalContent, clockwork: clockworkContent };
+const CONTENTS: Record<string, ThemeContent> = { fungal: fungalContent, clockwork: clockworkContent, dream: dreamContent };
 
 const themeId = process.argv[2] ?? 'fungal';
 const cps = Number(process.argv[3] ?? 2);

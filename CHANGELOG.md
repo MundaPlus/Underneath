@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-15 (Dream theme)
+- Add an optional time cycle to the engine: phases with production multipliers, `Game.cycle()`, a phase change event (`src/engine/types.ts`, `src/engine/game.ts`). The Dream Weaver pitch needs night and day.
+- Show a cycle meter in the actions panel and a toast on phase change. Mute the toasts during offline catch-up (`src/ui/panels/actions.ts`, `src/ui/app.ts`, `src/ui/base.css`).
+- Add the Dream Weaver theme: content with Sweet Dreams/Nightmares balance and a 4-minute night cycle, a top-down sleeping-city renderer with lit windows, dream bubbles, braided threads, smoke, fireflies, shooting stars and a moon/sun dial, indigo CSS (`src/themes/dream/`).
+- Mark Dream Weaver as ready in the registry (`src/themes/registry.ts`).
+- Add cycle tests and Dream content checks. Add Dream to the simulator (`src/engine/game.test.ts`, `scripts/simulate.ts`).
+- Update README and theme guide (`README.md`, `docs/THEMES.md`).
+
 ## 2026-10-15 (Clockwork theme)
 - Add the Clockwork Afterlife Bureau theme: content with Order/Chaos balance, blueprint floor-plan renderer with walls, brass tubes, ghosts, clocks and audit stamps, mahogany-and-brass CSS (`src/themes/clockwork/`). The user picked it as the second theme.
 - Mark Clockwork as ready in the registry (`src/themes/registry.ts`).
