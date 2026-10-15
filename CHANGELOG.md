@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-10-15 (mobile, credits)
+## 0.1.3 — 2026-10-15
 - Fit the top bar on phone screens: hide the resource name (the icon and the tooltip stay), put the rate under the amount, and let the pills share the width (`src/ui/base.css`). At 390 px, the second and third resources scrolled out of view.
 - Name Munda Plus as the copyright holder, and add a Credits line "Made by Munda Plus — https://munda.si", the same as Printwright (`LICENSE`, `README.md`). The user asked for it.
 
