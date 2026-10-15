@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.1 — 2026-10-15
+- Release 0.1.1: the name "Underneath" and the GitHub Pages workflow go to `master`. Version in `package.json` is 0.1.1.
+- Add the MIT license (`LICENSE`, `package.json`, `README.md`). The user picked MIT before the repo goes public on GitHub.
+
+## 2026-10-15 (GitHub Pages)
+- Add `handover.md` for a session on the main machine (192.168.31.3), which has `gh`. It covers the GitHub repo, GitHub Pages and the munda.si projects card (`handover.md`).
+- Add a GitHub Actions workflow that tests, builds and publishes the game to GitHub Pages on each push to `master` (`.github/workflows/pages.yml`). The user wants the game public on GitHub and linked from munda.si.
+
+## 2026-10-15 (folder)
+- Rename the project folder from `~/git_projects/incremental_game` to `~/git_projects/underneath` to match the game name. No files in the repo changed.
+
+## 2026-10-15 (name)
+- Name the game "Underneath": README title, package name, page title and browser tab (`README.md`, `package.json`, `index.html`, `src/ui/app.ts`). The user picked the name.
+
 ## 0.1.0 — 2026-10-15
 - Release 0.1.0: theme-neutral engine with three themes (Fungal Network, Clockwork Afterlife Bureau, Dream Weaver). Version in `package.json` is 0.1.0.
 

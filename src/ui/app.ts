@@ -50,7 +50,7 @@ function chosenThemeId(): string {
 
 function applyTheme(theme: ThemePack): void {
   document.documentElement.dataset.theme = theme.id;
-  document.title = theme.name;
+  document.title = `${theme.name} · Underneath`;
   const icon = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>${theme.icon}</text></svg>`;
   document.querySelector('link[rel=icon]')?.setAttribute('href', `data:image/svg+xml,${encodeURIComponent(icon)}`);
   document.querySelector('meta[name=theme-color]')?.setAttribute('content', theme.themeColor);
@@ -165,7 +165,12 @@ export async function startApp(root: HTMLElement): Promise<void> {
     h(
       'header',
       { class: 'topbar' },
-      h('div', { class: 'brand' }, h('span', { class: 'brand-mark', text: theme.icon }), h('h1', { text: theme.name })),
+      h(
+        'div',
+        { class: 'brand', title: 'Underneath' },
+        h('span', { class: 'brand-mark', text: theme.icon }),
+        h('h1', { text: theme.name }),
+      ),
       resources.el,
       h('button', { class: 'icon-btn', title: 'Options', 'aria-label': 'Options', text: '⚙', onclick: () => openSide('options') }),
     ),
