@@ -1,6 +1,6 @@
-# Incremental
+# Underneath
 
-An incremental (idle) game engine with plug-in themes. Three themes are ready:
+Hidden worlds that keep working while nobody watches. Underneath is an incremental (idle) game engine with plug-in themes. Three themes are ready:
 
 - **Fungal Network**: you are a mycelium under a forest floor.
 - **Clockwork Afterlife Bureau**: you run the paperwork office of the underworld.

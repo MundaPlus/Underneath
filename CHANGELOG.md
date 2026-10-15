@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-15 (name)
+- Name the game "Underneath": README title, package name, page title and browser tab (`README.md`, `package.json`, `index.html`, `src/ui/app.ts`). The user picked the name.
+
 ## 0.1.0 — 2026-10-15
 - Release 0.1.0: theme-neutral engine with three themes (Fungal Network, Clockwork Afterlife Bureau, Dream Weaver). Version in `package.json` is 0.1.0.
 
