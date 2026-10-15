@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-15 (folder)
+- Rename the project folder from `~/git_projects/incremental_game` to `~/git_projects/underneath` to match the game name. No files in the repo changed.
+
 ## 2026-10-15 (name)
 - Name the game "Underneath": README title, package name, page title and browser tab (`README.md`, `package.json`, `index.html`, `src/ui/app.ts`). The user picked the name.
 
