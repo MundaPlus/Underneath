@@ -1,23 +1,52 @@
+<div align="center">
+
 # Underneath
 
-Hidden worlds that keep working while nobody watches. Underneath is an incremental (idle) game engine with plug-in themes. Three themes are ready:
+**An idle game about hidden worlds that keep working while nobody watches.**
 
-- **Fungal Network**: you are a mycelium under a forest floor.
-- **Clockwork Afterlife Bureau**: you run the paperwork office of the underworld.
-- **Dream Weaver**: you harvest the dreams of a sleeping city, by night.
+[![Play in the browser](https://img.shields.io/badge/play-in%20the%20browser-6e56cf?style=for-the-badge)](https://mundaplus.github.io/Underneath/)
 
-Pick the theme in Options, or open the game with `?theme=clockwork` or `?theme=dream`. Each theme has its own save.
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646cff?logo=vite&logoColor=white)
+![No backend](https://img.shields.io/badge/backend-none-lightgrey)
 
-## Gameplay (all themes)
+![Fungal Network](docs/screenshots/fungal.webp)
 
-- **Click** to get the two main resources.
-- **Generators** produce resources every second. Their cost grows with each one you buy.
-- **Dual balance**: two resources pull against each other. Their production ratio puts you in a zone with bonuses or penalties. Stability upgrades pull the balance toward the middle.
-- **Map**: claim tiles next to your network. Each tile makes the network stronger, and special terrain gives extra bonuses or unlocks generators.
-- **Upgrades** multiply production, make clicks stronger, make tiles cheaper or add stability.
-- **Prestige**: reset the run for a permanent currency, which you spend in a shop. Each run gets a new random map.
-- **Time cycle** (optional per theme): a repeating cycle, such as night and day, changes production.
-- **Offline progress** for up to 8 hours (more with prestige upgrades). The game saves itself every 15 seconds.
+</div>
+
+## About
+
+Underneath is an incremental (idle) game engine with plug-in themes. Each theme uses the same rules but has its own world, text and art. Three themes are ready:
+
+| Theme | What you do |
+|---|---|
+| 🍄 **Fungal Network** | You are a mycelium under a forest floor |
+| ⚙️ **Clockwork Afterlife Bureau** | You run the paperwork office of the underworld |
+| 🌙 **Dream Weaver** | You harvest the dreams of a sleeping city, by night |
+
+Play it at **https://mundaplus.github.io/Underneath/** on a PC or a phone. No account and no install. The game saves in your browser.
+
+## Features
+
+- **Two resources in balance.** Two resources pull against each other. Their ratio puts you in a zone with bonuses or penalties.
+- **A map to claim.** Claim tiles next to your network. Special terrain gives bonuses or unlocks generators.
+- **Generators and upgrades.** Generators produce every second. Upgrades multiply production, make clicks stronger or make tiles cheaper.
+- **Prestige.** Reset the run for a permanent currency and spend it in a shop. Each run gets a new random map.
+- **Time cycle.** A theme can add a repeating cycle, such as night and day, that changes production.
+- **Offline progress.** The game calculates up to 8 hours of progress while you are away. It saves every 15 seconds.
+- **Plug-in themes.** A theme is content, a renderer and CSS. The engine does not change.
+
+## Screenshots
+
+| Clockwork Afterlife Bureau | Dream Weaver |
+|---|---|
+| ![Clockwork Afterlife Bureau](docs/screenshots/clockwork.webp) | ![Dream Weaver](docs/screenshots/dream.webp) |
+
+Pick the theme in **Options**, or open the game with `?theme=clockwork` or `?theme=dream`. Each theme has its own save.
+
+<details>
+<summary><b>Theme details</b></summary>
 
 ### Fungal Network
 
@@ -52,35 +81,49 @@ Decay growths cost sugar, and symbiosis growths cost nutrients. You need both si
 | Map | Sleeping City: cottages, nurseries, tenements, night wards, haunted houses, observatories, parks, smokestacks, the Black River |
 | Prestige | Long Sleep: wake in a bigger city, more lucid |
 
-## Run it
+</details>
 
-Requires Node 20.19 or newer.
+## Getting started
+
+You need [Node.js](https://nodejs.org/) 20.19 or newer.
 
 ```bash
+git clone https://github.com/MundaPlus/Underneath.git
+cd Underneath
 npm install
-npm run dev        # http://localhost:5180 (also on the LAN)
-npm run build      # static files in dist/, open from any web server
-npm test           # engine unit tests
-npm run sim        # pacing check: npm run sim -- fungal <clicks/s> <minutes>
+npm run dev
 ```
 
-## Project layout
+Then open http://localhost:5180.
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Starts the dev server on port 5180, also on the LAN |
+| `npm run build` | Writes static files to `dist/`. Any web server can host them. |
+| `npm test` | Runs the engine unit tests (Vitest) |
+| `npm run sim -- fungal 2 75` | Runs a headless bot to check pacing: theme, clicks per second, minutes |
+
+## Project structure
 
 ```
-src/engine/        theme-neutral rules: types, game, map, save, format
-src/ui/            DOM interface and base layout (uses CSS tokens only)
-src/themes/        theme registry, theme contract, shared renderers
-src/themes/fungal/ Fungal Network: content, renderer, CSS
-src/themes/clockwork/ Clockwork Afterlife Bureau: content, renderer, CSS
-src/themes/dream/  Dream Weaver: content, renderer, CSS
-scripts/simulate.ts  headless bot that checks pacing
-docs/THEMES.md     how to add a theme
+src/engine/      theme-neutral rules: types, game, map, save, format
+src/ui/          DOM interface and base layout (CSS tokens only)
+src/themes/      theme registry, theme contract, shared renderers
+  fungal/        Fungal Network: content, renderer, CSS
+  clockwork/     Clockwork Afterlife Bureau: content, renderer, CSS
+  dream/         Dream Weaver: content, renderer, CSS
+scripts/         simulate.ts, the headless pacing bot
+docs/THEMES.md   how to add a theme
 ```
 
 ## Add a theme
 
-See [docs/THEMES.md](docs/THEMES.md).
+A new theme needs content, a renderer and a stylesheet. Read [docs/THEMES.md](docs/THEMES.md) for the steps.
+
+## Deployment
+
+Each push to `master` runs the tests, builds the game and publishes `dist/` to GitHub Pages ([`.github/workflows/pages.yml`](.github/workflows/pages.yml)).
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE) © 2026 Marko Munda

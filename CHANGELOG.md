@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2 — 2026-10-15
+- Release 0.1.2: the new README and the screenshots go to `master`, which GitHub shows. Version in `package.json` is 0.1.2.
+- Rewrite the README in a usual GitHub layout: a header with badges and a play link, About, Features, Screenshots, Getting started, Project structure and License. The theme tables move into a folded section (`README.md`). The user asked for a shorter, classic GitHub README.
+- Add screenshots of the three themes in progress, as WebP (`docs/screenshots/`). The user asked for screenshots in the repo.
+
+## 2026-10-15 (GitHub)
+- Publish the repo on GitHub as public `MundaPlus/Underneath` with `master` as the default branch. Add the git remote `github`. Turn on GitHub Pages with GitHub Actions as the source. The user wants the game public and playable at https://mundaplus.github.io/Underneath/.
+
 ## 0.1.1 — 2026-10-15
 - Release 0.1.1: the name "Underneath" and the GitHub Pages workflow go to `master`. Version in `package.json` is 0.1.1.
 - Add the MIT license (`LICENSE`, `package.json`, `README.md`). The user picked MIT before the repo goes public on GitHub.
