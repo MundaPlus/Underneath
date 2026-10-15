@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-15 (Clockwork theme)
+- Add the Clockwork Afterlife Bureau theme: content with Order/Chaos balance, blueprint floor-plan renderer with walls, brass tubes, ghosts, clocks and audit stamps, mahogany-and-brass CSS (`src/themes/clockwork/`). The user picked it as the second theme.
+- Mark Clockwork as ready in the registry (`src/themes/registry.ts`).
+- Move the header icon and browser theme color into the theme pack. The mushroom was hard-coded in the app shell (`src/themes/types.ts`, `src/ui/app.ts`, `index.html`).
+- Move `hexA` to a shared module (`src/themes/shared/color.ts`).
+- Run the content checks and the simulator for every theme (`src/engine/game.test.ts`, `scripts/simulate.ts`).
+- Update README and theme guide (`README.md`, `docs/THEMES.md`).
+
 ## 2026-10-15
 - Add a theme-neutral engine: generators, upgrades, dual-resource balance, tile map, prestige, story log, save/load, offline progress (`src/engine/`). The user wants more themes later, so no theme facts are in the engine.
 - Add the theme pack contract and registry with lazy loading. Clockwork Afterlife Bureau and Dream Weaver are listed as planned (`src/themes/types.ts`, `src/themes/registry.ts`).

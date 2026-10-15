@@ -7,6 +7,8 @@ const fungal: ThemePack = {
   id: 'fungal',
   name: 'Fungal Network',
   tagline: 'Grow a mycelium under the forest floor.',
+  icon: '🍄',
+  themeColor: '#0e0a07',
   content: fungalContent,
   css,
   fontUrls: ['https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Nunito:wght@400;600;700&display=swap'],

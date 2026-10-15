@@ -26,6 +26,8 @@ The engine does not know about any theme. A theme pack gives the engine three th
      id: 'clockwork',
      name: 'Clockwork Afterlife Bureau',
      tagline: 'Process the souls of the dead, in triplicate.',
+     icon: '⚙️',
+     themeColor: '#16100b',
      content: myContent,
      css,
      createMapRenderer: createGridRenderer,
@@ -34,7 +36,7 @@ The engine does not know about any theme. A theme pack gives the engine three th
    ```
 6. In `src/themes/registry.ts`, set the entry to `status: 'ready'` and add `load: () => import('./<id>').then((m) => m.default)`.
 7. Add the content to `CONTENTS` in `scripts/simulate.ts`. Run `npm run sim -- <id> 2 75` and tune the numbers until the first prestige comes at 20–35 minutes for the bot.
-8. Run `npm test`. The content test only checks Fungal now. Copy it for the new theme.
+8. Add the content to `THEME_CONTENTS` in `src/engine/game.test.ts` and run `npm test`.
 
 Each theme keeps its own save (`localStorage` key `incremental-save:<id>`).
 
@@ -65,5 +67,7 @@ Use `gridLayout()` and `viewOffset()` from `src/themes/shared/layout.ts`. They g
 
 ## Ideas for the planned themes
 
-- **Clockwork Afterlife Bureau**: resources are Souls processed and Paperwork. The balance is Order against Chaos. The map is an office floor plan: rooms, corridors and pneumatic tubes. Prestige is an Audit.
+Clockwork Afterlife Bureau is done. See `src/themes/clockwork/` for a second example renderer (blueprint floor plan, no jitter).
+
+
 - **Dream Weaver**: resources are Calm and Nightmare. The map is a city at night: each tile is a house with sleepers. Prestige is a Long Sleep that moves you to a bigger city.

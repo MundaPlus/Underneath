@@ -30,6 +30,10 @@ export interface ThemePack {
   id: string;
   name: string;
   tagline: string;
+  /** Emoji for the header and the browser tab. */
+  icon: string;
+  /** Browser UI color (meta theme-color). */
+  themeColor: string;
   content: ThemeContent;
   /** CSS for this theme. It sets the design tokens (CSS variables) and any extra styles. */
   css: string;

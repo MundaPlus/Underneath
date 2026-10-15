@@ -1,6 +1,11 @@
 # Incremental
 
-An incremental (idle) game engine with plug-in themes. The first theme is **Fungal Network**: you are a mycelium under a forest floor.
+An incremental (idle) game engine with plug-in themes. Two themes are ready:
+
+- **Fungal Network**: you are a mycelium under a forest floor.
+- **Clockwork Afterlife Bureau**: you run the paperwork office of the underworld.
+
+Pick the theme in Options, or open the game with `?theme=clockwork`. Each theme has its own save.
 
 ## Gameplay (all themes)
 
@@ -24,6 +29,16 @@ An incremental (idle) game engine with plug-in themes. The first theme is **Fung
 
 Decay growths cost sugar, and symbiosis growths cost nutrients. You need both sides.
 
+### Clockwork Afterlife Bureau
+
+| Engine term | Clockwork Afterlife Bureau |
+|---|---|
+| Resources | Paperwork (order), Favors (chaos), Seniority (prestige) |
+| Generators | Staff: Junior Clerk … Grand Difference Engine (order), Restless Ghost … Department of Exceptions (chaos) |
+| Balance | Office Climate: Total Paralysis, By the Book, Running Like Clockwork, Lax Oversight, Ghostly Anarchy |
+| Map | Bureau Floor, drawn as a blueprint: desk pools, filing rooms, break rooms, back rooms, Forbidden Archives, Great Clock Rooms, tube junctions, walls, the Void |
+| Prestige | Audit: move to a new building with more seniority |
+
 ## Run it
 
 Requires Node 20.19 or newer.
@@ -43,10 +58,11 @@ src/engine/        theme-neutral rules: types, game, map, save, format
 src/ui/            DOM interface and base layout (uses CSS tokens only)
 src/themes/        theme registry, theme contract, shared renderers
 src/themes/fungal/ Fungal Network: content, renderer, CSS
+src/themes/clockwork/ Clockwork Afterlife Bureau: content, renderer, CSS
 scripts/simulate.ts  headless bot that checks pacing
 docs/THEMES.md     how to add a theme
 ```
 
 ## Add a theme
 
-See [docs/THEMES.md](docs/THEMES.md). Clockwork Afterlife Bureau and Dream Weaver are planned.
+See [docs/THEMES.md](docs/THEMES.md). Dream Weaver is planned.

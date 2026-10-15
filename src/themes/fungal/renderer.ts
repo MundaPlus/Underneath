@@ -1,6 +1,7 @@
 import { mulberry32 } from '../../engine/rng';
 import type { MapState } from '../../engine/types';
 import { neighbors } from '../../engine/map';
+import { hexA } from '../shared/color';
 import { fitCanvas, gridLayout, nearestTile, viewOffset, type GridLayout } from '../shared/layout';
 import type { MapRenderer, MapView } from '../types';
 
@@ -650,15 +651,4 @@ function drawPulses(ctx: CanvasRenderingContext2D, l: GridLayout, view: MapView,
     ctx.arc(l.cx[p.tile], l.cy[p.tile], l.cell * (0.2 + k * 1.4), 0, TAU);
     ctx.stroke();
   }
-}
-
-/** Color with alpha. Accepts #rgb, #rrggbb or any CSS color (alpha ignored then). */
-function hexA(color: string, a: number): string {
-  let c = color.trim();
-  if (c.startsWith('#')) {
-    if (c.length === 4) c = `#${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`;
-    const n = parseInt(c.slice(1, 7), 16);
-    return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a.toFixed(3)})`;
-  }
-  return c;
 }

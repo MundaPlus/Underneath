@@ -18,7 +18,8 @@ export const THEMES: ThemeEntry[] = [
     id: 'clockwork',
     name: 'Clockwork Afterlife Bureau',
     tagline: 'Process the souls of the dead, in triplicate.',
-    status: 'planned',
+    status: 'ready',
+    load: () => import('./clockwork').then((m) => m.default),
   },
   {
     id: 'dream',

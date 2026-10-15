@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { clockworkContent } from '../themes/clockwork/content';
 import { fungalContent } from '../themes/fungal/content';
 import { claimedCount } from './conditions';
 import { fmt } from './format';
@@ -203,14 +204,20 @@ describe('format', () => {
   });
 });
 
-describe('fungal content', () => {
+const THEME_CONTENTS: [string, ThemeContent, string][] = [
+  ['fungal', fungalContent, 'mother'],
+  ['clockwork', clockworkContent, 'archive'],
+];
+
+describe.each(THEME_CONTENTS)('%s content', (id, c, fixedTerrain) => {
   it('references only known ids', () => {
-    const c = fungalContent;
     const res = new Set(c.resources.map((r) => r.id));
     const gens = new Set(c.generators.map((g) => g.id));
     const ter = new Set(c.terrains.map((t) => t.id));
     const ups = new Set(c.upgrades.map((u) => u.id));
     expect(ups.size).toBe(c.upgrades.length);
+    expect(ter.has(c.map.startTerrain)).toBe(true);
+    expect(res.has(c.prestige.currency)).toBe(true);
     for (const g of c.generators) {
       for (const r of [...Object.keys(g.baseCost), ...Object.keys(g.produces)]) expect(res.has(r)).toBe(true);
       if (g.unlock?.gen) expect(gens.has(g.unlock.gen.id)).toBe(true);
@@ -220,10 +227,12 @@ describe('fungal content', () => {
       for (const e of u.effects) {
         if (e.type === 'genMult') expect(gens.has(e.gen)).toBe(true);
         if (e.type === 'terrainMult') expect(ter.has(e.terrain)).toBe(true);
+        if (e.type === 'clickMult' || e.type === 'clickRate') expect(c.clicks.some((k) => k.id === e.click)).toBe(true);
       }
       if (u.unlock?.upgrade) expect(ups.has(u.unlock.upgrade)).toBe(true);
+      if (u.unlock?.terrain) expect(ter.has(u.unlock.terrain.id)).toBe(true);
     }
-    const g = new Game(c, 'fungal');
-    expect(g.state.map.tiles.filter((t) => t.terrain === 'mother').length).toBe(3);
+    const g = new Game(c, id);
+    expect(g.state.map.tiles.filter((t) => t.terrain === fixedTerrain).length).toBe(3);
   });
 });
