@@ -1,0 +1,56 @@
+/* Fungal Network: dark soil, pale threads, bioluminescent glow. */
+:root[data-theme='fungal'] {
+  --bg: #0e0a07;
+  --surface: #1a130d;
+  --surface-2: #241a12;
+  --surface-hover: #2e2217;
+  --border: #3a2b1e;
+  --text: #efe6cf;
+  --text-dim: #a8977a;
+  --accent: #9ff5e0;
+  --accent-ink: #0b1612;
+  --danger: #e0705a;
+  --radius: 14px;
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --res-nutrients: #c59cf0;
+  --res-sugar: #f0c75e;
+  --res-spores: #9ff5e0;
+  --zone-decay-strong: #7b45b3;
+  --zone-decay: #a27ed6;
+  --zone-harmony: #66d1a2;
+  --zone-sym: #e2c262;
+  --zone-sym-strong: #cf8e28;
+
+  /* Map renderer tokens. */
+  --soil-top: #21170f;
+  --soil-bottom: #0b0705;
+  --fog: #090604;
+  --hypha: #efe6cf;
+  --hypha-glow: #9ff5e0;
+}
+
+[data-theme='fungal'] body {
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(159, 245, 224, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 110% 110%, rgba(197, 156, 240, 0.07), transparent 60%),
+    var(--bg);
+}
+
+[data-theme='fungal'] .panel {
+  background: linear-gradient(180deg, rgba(255, 240, 210, 0.025), transparent 40%), var(--surface);
+}
+
+[data-theme='fungal'] .brand-mark {
+  filter: drop-shadow(0 0 6px rgba(159, 245, 224, 0.6));
+}
+
+[data-theme='fungal'] .click-btn:active,
+[data-theme='fungal'] .click-btn.pop {
+  box-shadow: 0 0 0 1px var(--c), 0 0 24px -4px var(--c);
+}
+
+[data-theme='fungal'] .map-wrap {
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
