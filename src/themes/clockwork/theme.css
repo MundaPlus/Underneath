@@ -1,0 +1,76 @@
+/* Clockwork Afterlife Bureau: mahogany office, brass fittings, typewritten memos, blueprint map. */
+:root[data-theme='clockwork'] {
+  --bg: #120d09;
+  --surface: #1e1611;
+  --surface-2: #2a1f17;
+  --surface-hover: #35281d;
+  --border: #4a3826;
+  --text: #f1e4c8;
+  --text-dim: #b29c78;
+  --accent: #d8a94a;
+  --accent-ink: #1a1007;
+  --danger: #d0533c;
+  --radius: 6px;
+  --font-display: 'Special Elite', 'Courier New', ui-monospace, monospace;
+  --font-body: 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --res-paperwork: #efe2c2;
+  --res-favors: #7fd18a;
+  --res-seniority: #d8a94a;
+  --zone-order-strong: #5c6f86;
+  --zone-order: #8aa0b8;
+  --zone-balance: #d8a94a;
+  --zone-chaos: #7fbf86;
+  --zone-chaos-strong: #3f8a55;
+
+  /* Map renderer tokens. */
+  --bp-bg: #132b3c;
+  --bp-line: #9cc3d9;
+  --brass: #d8a94a;
+  --brass-dark: #7a5a22;
+  --wall: #2a1d12;
+  --ghost: #e4f4ff;
+  --stamp: #c8412f;
+}
+
+[data-theme='clockwork'] body {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 220, 160, 0.018) 0 2px, transparent 2px 9px),
+    radial-gradient(1000px 600px at 50% -20%, rgba(216, 169, 74, 0.08), transparent 60%),
+    var(--bg);
+}
+
+[data-theme='clockwork'] .panel {
+  background: linear-gradient(180deg, rgba(255, 230, 180, 0.03), transparent 30%), var(--surface);
+  box-shadow: inset 0 0 0 1px rgba(216, 169, 74, 0.08), 0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Brass rivets on panel corners. */
+[data-theme='clockwork'] .panel {
+  background-image:
+    radial-gradient(circle at 7px 7px, var(--accent) 1.5px, transparent 2.5px),
+    radial-gradient(circle at calc(100% - 7px) 7px, var(--accent) 1.5px, transparent 2.5px),
+    linear-gradient(180deg, rgba(255, 230, 180, 0.03), transparent 30%);
+}
+
+[data-theme='clockwork'] h1,
+[data-theme='clockwork'] h2,
+[data-theme='clockwork'] h3 {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+[data-theme='clockwork'] .log li {
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+
+[data-theme='clockwork'] .toast {
+  border-left-color: var(--danger);
+  background: #efe2c2;
+  color: #2a1d12;
+}
+
+[data-theme='clockwork'] .click-btn.pop {
+  box-shadow: 0 0 0 1px var(--c), 0 4px 0 -1px rgba(0, 0, 0, 0.5);
+}

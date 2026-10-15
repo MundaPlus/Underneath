@@ -1,0 +1,82 @@
+/* Dream Weaver: midnight indigo, silver thread, candle gold. */
+:root[data-theme='dream'] {
+  --bg: #0a0a1c;
+  --surface: #13132b;
+  --surface-2: #1b1b3a;
+  --surface-hover: #242449;
+  --border: #2e2d58;
+  --text: #ece8ff;
+  --text-dim: #a29fcf;
+  --accent: #c9b8ff;
+  --accent-ink: #14112e;
+  --danger: #ff6b8b;
+  --radius: 18px;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Quicksand', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --res-reverie: #9fd8ff;
+  --res-dread: #ff6b8b;
+  --res-lucidity: #ffe39a;
+  --zone-sweet-strong: #6fb8ff;
+  --zone-sweet: #9fcfff;
+  --zone-deep: #c9b8ff;
+  --zone-dark: #e58fb0;
+  --zone-dark-strong: #d1456d;
+  --phase-night: #2b2a6b;
+  --phase-dawn: #e7a3b8;
+  --phase-day: #ffe3a3;
+  --phase-dusk: #8a6bc4;
+
+  /* Map renderer tokens. */
+  --city-ground: #1a1c33;
+  --city-night: #070a1f;
+  --city-day: #ffe3b8;
+  --dream-thread: #e8e4ff;
+  --lamp: #ffd38a;
+}
+
+[data-theme='dream'] body {
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.5), transparent 2px),
+    radial-gradient(1px 1px at 72% 8%, rgba(255, 255, 255, 0.4), transparent 2px),
+    radial-gradient(1px 1px at 88% 62%, rgba(255, 255, 255, 0.35), transparent 2px),
+    radial-gradient(1px 1px at 34% 82%, rgba(255, 255, 255, 0.3), transparent 2px),
+    radial-gradient(900px 500px at 80% -10%, rgba(201, 184, 255, 0.1), transparent 60%),
+    radial-gradient(800px 500px at 0% 110%, rgba(255, 107, 139, 0.06), transparent 60%),
+    var(--bg);
+}
+
+[data-theme='dream'] .panel {
+  background: linear-gradient(180deg, rgba(201, 184, 255, 0.04), transparent 40%), var(--surface);
+}
+
+[data-theme='dream'] h1,
+[data-theme='dream'] h2,
+[data-theme='dream'] h3,
+[data-theme='dream'] .click-label,
+[data-theme='dream'] .zone-name {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+[data-theme='dream'] h2 {
+  font-size: 21px;
+}
+
+[data-theme='dream'] .log li,
+[data-theme='dream'] .toast,
+[data-theme='dream'] .upg-flavor {
+  font-style: italic;
+}
+
+[data-theme='dream'] .log li {
+  font-size: 15px;
+}
+
+[data-theme='dream'] .brand-mark {
+  filter: drop-shadow(0 0 8px rgba(255, 227, 154, 0.7));
+}
+
+[data-theme='dream'] .click-btn.pop {
+  box-shadow: 0 0 0 1px var(--c), 0 0 28px -6px var(--c);
+}
