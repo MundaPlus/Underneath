@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-10-15 (GitHub Pages)
+- Add `handover.md` for a session on the main machine (192.168.31.3), which has `gh`. It covers the GitHub repo, GitHub Pages and the munda.si projects card (`handover.md`).
 - Add a GitHub Actions workflow that tests, builds and publishes the game to GitHub Pages on each push to `master` (`.github/workflows/pages.yml`). The user wants the game public on GitHub and linked from munda.si.
 
 ## 2026-10-15 (folder)
