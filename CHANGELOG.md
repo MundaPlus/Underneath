@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-15 (GitHub)
+- Publish the repo on GitHub as public `MundaPlus/Underneath` with `master` as the default branch. Add the git remote `github`. Turn on GitHub Pages with GitHub Actions as the source. The user wants the game public and playable at https://mundaplus.github.io/Underneath/.
+
 ## 0.1.1 — 2026-10-15
 - Release 0.1.1: the name "Underneath" and the GitHub Pages workflow go to `master`. Version in `package.json` is 0.1.1.
 - Add the MIT license (`LICENSE`, `package.json`, `README.md`). The user picked MIT before the repo goes public on GitHub.
