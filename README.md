@@ -80,3 +80,7 @@ docs/THEMES.md     how to add a theme
 ## Add a theme
 
 See [docs/THEMES.md](docs/THEMES.md).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
