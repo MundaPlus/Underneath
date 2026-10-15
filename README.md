@@ -124,6 +124,10 @@ A new theme needs content, a renderer and a stylesheet. Read [docs/THEMES.md](do
 
 Each push to `master` runs the tests, builds the game and publishes `dist/` to GitHub Pages ([`.github/workflows/pages.yml`](.github/workflows/pages.yml)).
 
+## Credits
+
+Made by Munda Plus — https://munda.si
+
 ## License
 
-[MIT](LICENSE) © 2026 Marko Munda
+MIT. See [LICENSE](LICENSE).
