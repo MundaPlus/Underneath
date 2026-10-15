@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.0 — 2026-10-15
+- Release 0.1.0: theme-neutral engine with three themes (Fungal Network, Clockwork Afterlife Bureau, Dream Weaver). Version in `package.json` is 0.1.0.
+
 ## 2026-10-15 (Dream theme)
 - Add an optional time cycle to the engine: phases with production multipliers, `Game.cycle()`, a phase change event (`src/engine/types.ts`, `src/engine/game.ts`). The Dream Weaver pitch needs night and day.
 - Show a cycle meter in the actions panel and a toast on phase change. Mute the toasts during offline catch-up (`src/ui/panels/actions.ts`, `src/ui/app.ts`, `src/ui/base.css`).
